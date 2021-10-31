@@ -1,6 +1,7 @@
 # Covert-playthings
 
-Simple unconventional script for minecraft prison server
+Simple unconventional script for minecraft prison server.
+
 It only require python installation and some python package
 
 ## Requirement
