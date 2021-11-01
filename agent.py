@@ -22,15 +22,15 @@ def main():
             print(f'Program ended')
             return False
         elif key == keyboard.Key.right:
-            operator_thread.mode = (operator_thread.mode+1)%3
+            operator_thread.mode = (operator_thread.mode+1)%operator_thread.get_modecount()
             operator_thread.pause()
             print(f'Program now in mode: {operator_thread.get_description()}')
         elif key == keyboard.Key.left:
-            operator_thread.mode = (operator_thread.mode-1)%3
+            operator_thread.mode = (operator_thread.mode-1)%operator_thread.get_modecount()
             operator_thread.pause()
             print(f'Program now in mode: {operator_thread.get_description()}')
         elif key == keyboard.Key.down:
-            if operator_thread.mode == 0:
+            if operator_thread.mode == 0 or operator_thread.mode == 3:
                 operator_thread.play()
 
     def on_click(x, y, button, pressed):
@@ -58,7 +58,9 @@ class Operator(threading.Thread):
         self.alive = True
         self.description = {0: 'autocommand',
                             1: 'hitting',
-                            2: 'mob grinding'}
+                            2: 'mob grinding',
+                            # 3: 'naive nuke',
+            }
         self.mode = 1
 
     def terminate(self):
@@ -74,6 +76,9 @@ class Operator(threading.Thread):
 
     def get_description(self):
         return self.description[self.mode]
+
+    def get_modecount(self):
+        return len(self.description)
 
     def clicking(self):
         self.mouse_ctl.click(mouse.Button.left)
@@ -91,6 +96,10 @@ class Operator(threading.Thread):
         pydirectinput.press('enter')
         self.pause()
 
+    def move_quarter_sphere(self):
+        pydirectinput.move(0,5)
+        self.pause()
+
     def run(self):
         while self.alive:
             while self.running:
@@ -100,6 +109,8 @@ class Operator(threading.Thread):
                     self.clicking()
                 elif self.mode == 2:
                     self.clicking()
+                elif self.mode == 3:
+                    self.move_quarter_sphere()
                 else:
                     print(f'no implement error')
                     self.terminate()
