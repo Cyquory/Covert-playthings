@@ -82,7 +82,7 @@ class Operator(threading.Thread):
 
     def clicking(self):
         self.mouse_ctl.click(mouse.Button.left)
-        d = 0.1+random.random()*0.1
+        d = 0.05+random.random()*0.2
         time.sleep(d)
 
     def command(self):

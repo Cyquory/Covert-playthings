@@ -11,13 +11,13 @@ I get python for window using `pyenv for Windows`: https://github.com/pyenv-win/
 
 Install `pynput` and `pydirectinput` with pip:
 ```
-> pip install pynput
-> pip install pydirectinput
+pip install pynput
+pip install pydirectinput
 ```
 
 Then you should run any script with by running the python code.
 ```
-> python agent.py
+python agent.py
 ```
 
 ## How to write my own script?
@@ -36,4 +36,4 @@ It may not work for everyone. proceed it with care.
 
 In minecraft, open `Game menu` (press Esc in the game) > `Options..` > `Controls..` > `Mouse Settings..` and set `Raw Input` to OFF. Then the `pydirectinput.move()` should work as expected.
 
-Under environment: Minecraft 1.17.1(vanilla), python 3.9.6, pydirectinput 1.0.4, Windows 10 Home 21H1
+Under environment: Minecraft 1.18.1(vanilla), python 3.9.9, pydirectinput 1.0.4, Windows 10 Home 21H2
